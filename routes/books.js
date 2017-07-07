@@ -2,7 +2,6 @@ var Book       = require('../models/book'),
     User       = require('../models/user'),
     middleware = require('../middleware'),
     nodemailer = require('nodemailer'),
-    config     = require('../config'),
     multerS3   = require('multer-s3'),
     aws        = require('aws-sdk'),
     express    = require('express'),
@@ -10,8 +9,8 @@ var Book       = require('../models/book'),
     router     = express.Router();
 
 aws.config.update({
-    secretAccessKey: config.aws_secret_access_key,
-    accessKeyId: config.aws_access_key_id,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     region: 'us-east-2'
 });
 
@@ -20,7 +19,7 @@ var s3 = new aws.S3();
 var upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: config.s3_bucket_user,
+        bucket: process.env.S3_BUCKET_USER,
         key: function (req, file, cb) {
             var fileExtension = file.originalname.split(".")[1];
             var path = "uploads/" + req.user._id + Date.now() + "." + fileExtension;
@@ -99,8 +98,8 @@ router.get('/books/:id/trade/:userId', middleware.isLoggedIn, function(req, res)
         var client = nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
-          user: config.sendgrid_username,
-          pass: config.sendgrid_password
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD
         }
       });
           var email = {

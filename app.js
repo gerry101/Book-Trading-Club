@@ -12,7 +12,8 @@ var methodOverride = require("method-override"),
 var indexRoutes = require('./routes/index'),
     bookRoutes  = require('./routes/books');
 
-mongoose.connect('mongodb://localhost/book_club');
+//book_club
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(session({
     secret: 'Book trade trade club',

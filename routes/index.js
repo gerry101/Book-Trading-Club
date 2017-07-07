@@ -1,7 +1,6 @@
 var User       = require('../models/user'),
     middleware = require('../middleware'),
     nodemailer = require('nodemailer'),
-    config     = require('../config'),
     passport   = require('passport'),
     express    = require('express'),
     crypto     = require('crypto'),
@@ -101,8 +100,8 @@ router.post('/forgot', function(req, res, next) {
  var client = nodemailer.createTransport({
  service: 'SendGrid',
  auth: {
- user: config.sendgrid_username,
- pass: config.sendgrid_password
+ user: process.env.SENDGRID_USERNAME,
+ pass: process.env.SENDGRID_PASSWORD
  }
  });
  var email = {
@@ -172,8 +171,8 @@ router.post('/reset/:token', function(req, res) {
       var client = nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
-          user: config.sendgrid_username,
-          pass: config.sendgrid_password
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD
         }
       });
       var email = {
