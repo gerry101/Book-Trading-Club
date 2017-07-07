@@ -118,6 +118,7 @@ router.get('/books/:id/trade/:userId', middleware.isLoggedIn, function(req, res)
           });
         });
        });
+       req.flash('success', 'Trade request sent via email to author');
        res.redirect('/profile')
    }); 
 });
