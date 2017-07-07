@@ -1,0 +1,57 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %> 
+<% include ../partials/indexJumbotron %> 
+
+<% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
+<% var defaultPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
+
+<div class="container">
+    <div class="row">
+        <%books.forEach(function(book) {%>
+            <div class="col-md-4">
+                <div class="card mb-2">
+                    <div class="view overlay hm-white-slight">
+                        <%if(book.image === undefined ){%>
+                            <img class="img-fluid" src="<%= awspath %><%= defaultPath %>" alt="Book image">
+                        <%} else {%>
+                            <img class="img-fluid" src="<%= awspath %><%= book.image %>" alt="Book image">
+                        <%}%>
+                        <a>
+                            <div class="mask waves-effect waves-light"></div>
+                        </a>
+                    </div>
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="pull-left">
+                                    <h4 class="card-title"><%=book.name%></h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pull-right">
+                                    <%if(!currentUser.equals(book.author)) {%>
+                                        <p id='inline-p'>
+                                            <a href="/books/<%=book._id%>/trade/<%=currentUser._id%>" id="alert-target">
+                                                <i class="fa fa-exchange" aria-hidden="true"></i>
+                                            </a>
+                                        </p>
+                                    <%}%>
+                                    <p id='inline-p'>
+                                        <a href="<%=book.link%>" target="_blank">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h6><span class="badge blue">by <%=book.authorName%></span></h6>
+                    </div>
+                </div>
+            </div>
+        <%})%>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,30 @@
+{
+  "name": "book_trading_club",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Gerry Migwi",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "aws-sdk": "^2.82.0",
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "crypto": "0.0.3",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.11.1",
+    "multer": "^1.3.0",
+    "multer-s3": "^2.7.0",
+    "nodemailer": "^4.0.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
+  }
+}

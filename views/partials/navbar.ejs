@@ -1,0 +1,31 @@
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+          <div class="container">
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a class="navbar-brand" href="/">
+                  <i class="fa fa-book" aria-hidden="true"></i> Shelf
+              </a>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/books">Home</a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav mr-0">
+                    <li class="nav-item">
+                       <a href="/books" class="nav-link"><em> all books </em><span class="sr-only"></span></a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="/profile" class="nav-link"><em> my profile </em><span class="sr-only"></span></a>
+                   </li>
+                    <li class="nav-item">
+                       <a href="users/<%=currentUser._id%>/update" class="nav-link" <em> settings </em><span class="sr-only"></span></a>
+                   </li>
+                   <li class="nav-item">
+                       <a href="/logout" class="nav-link"><em> logout </em><span class="sr-only"></span></a>
+                   </li>
+                </ul>
+              </div>
+          </div>
+    </nav>

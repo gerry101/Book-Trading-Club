@@ -1,0 +1,34 @@
+<% include ./partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div id="form-pd" class="col-md-4">
+            <form id="unlock-form" method="POST">
+                <div class="card-block">
+                    <div class="text-center">
+                        <h3><i class="fa fa-unlock"></i> Reset:</h3>
+                        <hr class="mt-2 mb-2">
+                    </div>
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input type="text" id="email" name="email" class="form-control">
+                        <label for="email">Your email</label>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-deep-purple">Reset</button>
+                    </div>
+                </div>
+            </form>
+             <div class="modal-footer">
+                <div class="options">
+                    <p>Not a member? <a href="/register">Sign Up</a></p>
+                    <p>Already a member? <a href="/login">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<% include ./partials/footer %>

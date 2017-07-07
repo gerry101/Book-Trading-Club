@@ -1,0 +1,27 @@
+html,
+body,
+.view {
+    height: 100%;
+}
+
+#loctn {
+    color: #42A5F5;
+}
+
+h1 {
+text-shadow: 0px 4px 3px rgba(0, 0, 0, 4),
+             0px 8px 13px rgba(0, 0, 0, 4),
+             0px 18px 23px rgba(0, 0, 0, 4);
+}
+
+.flex-center {
+    color: #fff;
+}
+
+.view {
+    background: url("https://images.unsplash.com/photo-1433588641602-7c1083c4f0e2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=9490fbd7919a151bacc3fbcc24ce9fcb")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

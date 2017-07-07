@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div id="form-pd" class="col-md-4">
+           <div class="text-center">
+                <h3><i class="fa fa-plus mb-2" aria-hidden="true"></i> Add New Book :</h3>
+            </div>
+            <form action="/books" method="POST" id="add-book-form" enctype="multipart/form-data">
+                <div class="md-form form-top">
+                    <i class="fa fa-book prefix"></i>
+                    <input type="text" id="name" name="name" class="form-control">
+                    <label for="name">Name</label>
+                </div>
+                <div class="md-form form-top">
+                    <i class="fa fa-link prefix"></i>
+                    <input type="url" id="link" name="link" class="form-control">
+                    <label for="link">Link to your book or to your portfolio</label>
+                </div>
+                <div class="md-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
+                            <% var placeholderPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
+                            <img src="<%=awspath%><%=placeholderPath%>" class="img-fluid img-thumbnail" id="image">
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-1">Book Avatar</h5>
+                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)" class="form-control-file" id="file" aria-describedby="fileHelp">
+                            <small id="fileHelp" class="form-text text-muted">
+                            Please select an <strong>image</strong> that allows other users to identify your book.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-indigo">Add</button>
+                </div>
+                <hr>
+            </form> 
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<% include ../partials/addBookFooter %>
