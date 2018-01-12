@@ -2,8 +2,7 @@
 <% include ../partials/navbar %> 
 <% include ../partials/profileJumbotron %> 
 
-<% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
-<% var defaultPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
+<% var defaultPath = "https://images.unsplash.com/photo-1502979932800-33d311b7ce56?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9%0A&s=115e3c47cf8a55cec04b6687357f10a2" %>
 
 <div class="container">
     <div class="row">
@@ -12,9 +11,9 @@
                 <div class="card mb-2">
                     <div class="view overlay hm-white-slight">
                         <%if(book.image === undefined ){%>
-                            <img class="img-fluid" src="<%= awspath %><%= defaultPath %>" alt="Book image">
+                            <img class="img-fluid" src="<%= defaultPath %>" alt="Book image">
                         <%} else {%>
-                            <img class="img-fluid" src="<%= awspath %><%= book.image %>" alt="Book image">
+                            <img class="img-fluid" src="<%= book.image %>" alt="Book image">
                         <%}%>
                         <a>
                             <div class="mask waves-effect waves-light"></div>
@@ -31,7 +30,7 @@
                                 <div class="pull-right">
                                     <p id='inline-p'>
                                         <a href="<%=book.link%>" target="_blank">
-                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            <i data-toggle="tooltip" data-placement="left" title="User portfolio" class="fa fa-info-circle" aria-hidden="true"></i>
                                         </a>
                                     </p>
                                 </div>

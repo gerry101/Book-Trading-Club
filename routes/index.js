@@ -7,14 +7,17 @@ var User       = require('../models/user'),
     asyncc     = require('async'),
     router     = express.Router();
 
+// Landing page route
 router.get('/', function(req, res) {
    res.render('landing'); 
 });
 
+// Register form route
 router.get("/register", function(req, res) {
    res.render("register"); 
 });
 
+// Register post route
 router.post("/register", function(req, res) {
    var newUser = new User({username: req.body.username, email: req.body.email, image: null});
    User.register(newUser, req.body.password, function(err, user) {
@@ -33,10 +36,12 @@ router.post("/register", function(req, res) {
    });
 });
 
+// Login form route
 router.get("/login", function(req, res) {
    res.render("login");
 });
 
+// Login post route
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
@@ -50,10 +55,12 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+// User update form route
 router.get('/users/:id/update', middleware.isLoggedIn, function(req, res) {
    res.render('update');
 });
 
+// User show route
 router.put('/users/:id', middleware.isLoggedIn, function(req, res) {
    User.findByIdAndUpdate(req.params.id, {
         $set: {
@@ -72,10 +79,12 @@ router.put('/users/:id', middleware.isLoggedIn, function(req, res) {
      }); 
 });
 
+// Forgot password form route
 router.get("/forgot", function(req, res) {
    res.render("forgot"); 
 });
 
+// Forgot password post route
 router.post('/forgot', function(req, res, next) {
  asyncc.waterfall([
  function(done) {
@@ -100,12 +109,12 @@ router.post('/forgot', function(req, res, next) {
  var client = nodemailer.createTransport({
  service: 'SendGrid',
  auth: {
- user: process.env.SENDGRID_USERNAME,
- pass: process.env.SENDGRID_PASSWORD
+ user: "gmigwi",
+ pass: "Chatinter1"
  }
  });
  var email = {
- from: 'Shelf <teamkyama@gmail.com>',
+ from: 'Shelf <gmigwi.projects@gmail.com>',
  to: user.email,
  subject: 'Shelf Account Password Reset',
  html: '<p>Hello,</p>' +
@@ -115,11 +124,11 @@ router.post('/forgot', function(req, res, next) {
        '<p>If you did not request this, please ignore this email and your password will remain unchanged.</p>' +
        '<p>From the Shelf team,<br>' +
        'Have a  :-)  time<br>' +
-       'Feel free to reach out at teamkyama@gmail.com</p>'
+       'Feel free to reach out at gmigwi.projects@gmail.com</p>'
       };
  client.sendMail(email, function(err) {
  req.flash('success', 'An e-mail has been sent to \'' + user.email + '\' with further instructions.');
- req.flash('info', 'It might take a few minutes as Shelf does it\'s thing :-)');
+ req.flash('info', 'It might take a few minutes as Shelf does it\'s thing :-)'); 
      
  done(err, 'done');
  });
@@ -130,6 +139,7 @@ router.post('/forgot', function(req, res, next) {
  });
 });
 
+// Get request token route
 router.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
@@ -142,6 +152,7 @@ router.get('/reset/:token', function(req, res) {
   });
 });
 
+// Post route request token
 router.post('/reset/:token', function(req, res) {
   asyncc.waterfall([
     function(done) {
@@ -171,19 +182,19 @@ router.post('/reset/:token', function(req, res) {
       var client = nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD
+          user: "gmigwi",
+          pass: "Chatinter1"
         }
       });
       var email = {
-        from: 'Shelf <teamkyama@gmail.com>',
+        from: 'Shelf <gmigwi.projects@gmail.com>',
         to: user.email,
         subject: 'Shelf Account Password Reset',
         html: '<p>Hey there,</p>' +
               '<p>This is a confirmation that the password for your Shelf account ' + user.email + ' has just been changed.</p>' +
               '<p>From the Shelf team,<br>' +
               'Have a  :-)  time<br>' +
-              'Feel free to reach out at kyama@gmail.com</p>'
+              'Feel free to reach out at gmigwi.projects@gmail.com</p>'
       };
       client.sendMail(email, function(err) {
         req.flash('success', 'Your password has been changed.');
@@ -195,6 +206,7 @@ router.post('/reset/:token', function(req, res) {
   });
 });  
 
+// Logout post route
 router.get("/logout", function(req, res) {
    req.logout();
    res.redirect("/");

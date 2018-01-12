@@ -21,13 +21,12 @@
                 <div class="md-form">
                     <div class="row">
                         <div class="col-md-6">
-                            <% var awspath = "https://s3.us-east-2.amazonaws.com/user-image-aws-bucket/" %>
-                            <% var placeholderPath = "uploads/593c64707e790917b46bda1b1497439339142.jpg" %>
-                            <img src="<%=awspath%><%=placeholderPath%>" class="img-fluid img-thumbnail" id="image">
+                            <% var placeholderPath = "https://images.unsplash.com/photo-1502979932800-33d311b7ce56?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9%0A&s=115e3c47cf8a55cec04b6687357f10a2" %>
+                            <img src="<%=placeholderPath%>" class="img-fluid img-thumbnail" id="image">
                         </div>
                         <div class="col-md-6">
                             <h5 class="mb-1">Book Avatar</h5>
-                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)" class="form-control-file" id="file" aria-describedby="fileHelp">
+                            <input type="file" name="image" accept="image/*" onchange="loadFile(event)" class="form-control-file" id="file" aria-describedby="fileHelp" required>
                             <small id="fileHelp" class="form-text text-muted">
                             Please select an <strong>image</strong> that allows other users to identify your book.
                             </small>
