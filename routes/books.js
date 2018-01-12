@@ -23,9 +23,9 @@ var upload = multer({ storage: storage, fileFilter: imageFilter})
 
 var cloudinary = require('cloudinary');
 cloudinary.config({ 
-  cloud_name: 'gmigwiprojects', 
-  api_key: "773588939367444", 
-  api_secret: "aPAA4HJlp-z-Z8uqKLqkssAY6Es"
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET: 
 });
 
 // All books show route
@@ -103,8 +103,8 @@ router.get('/books/:id/trade/:userId', middleware.isLoggedIn, function(req, res)
         var client = nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
-          user: "gmigwi",
-          pass: "Chatinter1"
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD
         }
       });
           var email = {
